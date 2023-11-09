@@ -8,6 +8,8 @@ from django.views import generic
 from django.views.generic import CreateView
 from .forms import RegisterUserForm
 from .models import Application
+from .models import Task
+from .models import CastomUser
 
 
 # Create your views here.
@@ -58,3 +60,11 @@ class ApplicationsByUserListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Application.objects.filter(user=self.request.user)
+
+    def delete_task(requests, task_id): #Delete your task.
+        task = Task.objects.get(id=task_id)
+        task.objects.delete()
+
+        tasks = Task.objects.order_by('date_added')
+        context = {'tasks': tasks}
+        return render(requests, 'work_list/index.html', context)

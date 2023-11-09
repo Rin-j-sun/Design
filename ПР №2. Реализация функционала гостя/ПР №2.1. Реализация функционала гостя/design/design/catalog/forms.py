@@ -54,7 +54,7 @@ class RegisterUserForm(forms.ModelForm):
         password2 = self.cleaned_data.get('password2')
         if password and password2 and password != password2:
             raise ValidationError({
-                'password2': ValidationError('Введенные пароли не совпадант', соdе='password_mismatch')
+                'password2': ValidationError('Введенные пароли не совпадают', соdе='password_mismatch')
         })
     def save(self, commit=True):
         user = super().save(commit=False)
