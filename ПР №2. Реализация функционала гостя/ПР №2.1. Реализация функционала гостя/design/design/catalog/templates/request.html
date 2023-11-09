@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Мои заявки</h1>
+
+{% if application %}
+{% for application in applications %}
+<p>Временная метка:{{ application.date }}</p>
+<p>Название: {{ application.title }}</p>
+<p>Описание: {{ application.summary }}</p>
+<p>Категория: {{ application.category }}</p>
+<p>Статус: {{ application.get_status_display }}</p>
+
+{% endfor %}
+{% endif %}
+{% endblock %}

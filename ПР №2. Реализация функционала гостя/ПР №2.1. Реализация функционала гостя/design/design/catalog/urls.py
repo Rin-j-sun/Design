@@ -16,5 +16,6 @@ urlpatterns = [
     path('validate_username', validate_username, name='validate_username'),
     path('logout/', BBLogoutView.as_view(), name='logout'),
     path('profil/', ApplicationsByUserListView.as_view(), name='profil'),
+    path('request/', ApplicationsByUserListView.as_view(), name='request'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

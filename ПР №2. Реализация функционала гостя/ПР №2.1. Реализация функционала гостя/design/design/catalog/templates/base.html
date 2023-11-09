@@ -19,6 +19,7 @@
             <p><a href="{% url 'index' %}">Главная</a></p>
             {% if user.is_authenticated %}
             <p><a href="{% url 'profil' %}">Личный кабинет</a></p>
+            <p><a href="{% url 'request' %}">Мои заявки</a></p>
                 <p><a href="{% url 'logout' %}">Выход</a></p>
             {% else %}
                 <p><a href="{% url 'login' %}">Вход</a></p>
