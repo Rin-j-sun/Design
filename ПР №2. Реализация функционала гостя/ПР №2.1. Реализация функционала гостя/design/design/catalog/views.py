@@ -52,6 +52,12 @@ class ApplicationListView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'applications'
 
+class ApplicationCreate(LoginRequiredMixin, CreateView):
+    model = Application
+    fields = ['title','category', 'photo_file']
+    template_name = 'order.html'
+    success_url = reverse_lazy('order')
+
 
 class ApplicationsByUserListView(LoginRequiredMixin, generic.ListView):
     model = Application
@@ -60,11 +66,3 @@ class ApplicationsByUserListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Application.objects.filter(user=self.request.user)
-
-    def delete_task(requests, task_id): #Delete your task.
-        task = Task.objects.get(id=task_id)
-        task.objects.delete()
-
-        tasks = Task.objects.order_by('date_added')
-        context = {'tasks': tasks}
-        return render(requests, 'work_list/index.html', context)

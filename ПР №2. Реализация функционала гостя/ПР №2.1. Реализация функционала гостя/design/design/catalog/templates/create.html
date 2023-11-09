@@ -1,0 +1,12 @@
+{% extends "base.html"%}
+
+{% block content%}
+<h1>Создать заявку</h1>
+<form action="{% url 'request'%}" method="post" enctype="multipart/from-data">
+    {% csrf_token %} 
+    <table> 
+        {{ from.as_table}} 
+    </table> 
+    <input type="submit" value="Submit" /> 
+</form>
+{% endblock%}
