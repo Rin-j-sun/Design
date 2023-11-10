@@ -9,7 +9,6 @@
 <p>Название: {{ application.title }}</p>
 <p>Категория: {{ application.category }}</p>
 <p>Фотография: <img src="{{ application.photo_file.url }}"></p>
-<a href="{% url  'delete' 1 %}"></a>
 
 {% endfor %}
 {% endif %}

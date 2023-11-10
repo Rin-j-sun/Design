@@ -29,7 +29,7 @@ class Application(models.Model):
         ('C', 'Выполнено')
     ]
 
-    def validate_image(fieldfile_obj):
+    def validate_image(fieldfile_obj): #проверка на размер фото
         filesize = fieldfile_obj.file.size
         megabyte_limit = 2.0
         if filesize > megabyte_limit * 1024 * 1024:
@@ -46,3 +46,11 @@ class Application(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Task (models.Model):
+        # Task in this app.
+        name = models.CharField(max_length=200)
+        date_added = models.DateTimeField(auto_now_add=True)
+
+        def __str__(self):
+            return self.name

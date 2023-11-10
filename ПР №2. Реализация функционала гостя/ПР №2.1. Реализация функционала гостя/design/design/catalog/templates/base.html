@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
 <div style="display: flex">
@@ -19,7 +19,6 @@
             <p><a href="{% url 'index' %}">Главная</a></p>
             {% if user.is_authenticated %}
             <p><a href="{% url 'profil' %}">Личный кабинет</a></p>
-            <p><a href="{% url 'order' %}">Создать заявку</a></p>
             <p><a href="{% url 'logout' %}">Выход</a></p>
             {% else %}
                 <p><a href="{% url 'login' %}">Вход</a></p>
@@ -27,6 +26,26 @@
             {% endif %}
        </nav>
     </div>
+
+    {% block content %}
+
+    {% if application_list %}
+    <h2>Список заявок</h2>
+    <h3>Количество заявок, находящихся в статусе «Принято в работу»: {{ num_application }}</h3><br>
+
+      {% for ap in application_list %}
+        <ul>
+            <li>{{ap.date}}</li>
+            <li><a href="{{ application.get_absolute_url }}">{{ ap.name }}</a><br> ({{ap.category}})<br>({{ap.status}})</li>
+            <img src="{{ ap.photo_file.url}}" width="400px", height="350px">
+
+        </ul>
+      {% endfor %}
+
+    {% endif %}
+
+{% endblock %}
+
     <div style="margin-left: 50px">{% block content %}{% endblock %}</div>
 </div>
 </body>

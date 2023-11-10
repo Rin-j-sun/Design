@@ -67,23 +67,6 @@ class RegisterUserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'username', 'email', 'password', 'password2', 'rules')
 
 
-class ApplicationCreate(models.Application):
-    app_name = forms.CharField(
-        label='Название проекта : ',
-        validators=[RegexValidator('^[а-яА-Я- -]+$',
-                                   message="Разрешены только кириллица, дефис и пробелы")],
-        error_messages={'required': 'Обязательное поле', }
-    )
-    title = models.CharField(max_length=200)
-    summary = models.TextField(help_text="Опишите свою заявку ")
-    STATUS_CHOICES = [
-        ('N', 'Новая'),
-        ('P', 'Принято в работу'),
-        ('C', 'Выполнено')
-    ]
 
-    class Meta:
-        model = Application
-        fields = ('app_name', 'app_about', 'img')
 
 
